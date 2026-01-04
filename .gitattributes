@@ -1,0 +1,13 @@
+# See https://git-scm.com/docs/gitattributes for more about git attribute files.
+
+# ========================================
+# Rails (blog-api)
+# ========================================
+
+# Mark the database schema as having been generated.
+blog-api/db/schema.rb linguist-generated
+
+# Mark any vendored files as having been vendored.
+blog-api/vendor/* linguist-vendored
+blog-api/config/credentials/*.yml.enc diff=rails_credentials
+blog-api/config/credentials.yml.enc diff=rails_credentials
