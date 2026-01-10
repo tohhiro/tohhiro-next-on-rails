@@ -7,6 +7,13 @@ Rails.application.routes.draw do
 
   # API routes
   namespace :api do
+    namespace :v1 do
+      get "posts/index"
+      get "posts/show"
+      get "posts/create"
+      get "posts/update"
+      get "posts/destroy"
+    end
     get 'health', to: 'health#index'
   end
 
