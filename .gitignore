@@ -68,6 +68,8 @@ blog-client/.yarn/*
 
 # testing
 blog-client/coverage
+blog-client/playwright-report/
+blog-client/test-results/
 
 # next.js
 blog-client/.next/
@@ -85,3 +87,6 @@ blog-client/next-env.d.ts
 
 # vercel
 blog-client/.vercel
+
+*storybook.log
+storybook-static
