@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { fetchPost } from "@/app/posts/lib/fetchPost";
-import EditPostForm from "@/app/posts/[id]/edit/EditPostForm";
+import EditPostForm from "@/app/posts/components/EditPostForm";
 
 export default async function EditPostPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
