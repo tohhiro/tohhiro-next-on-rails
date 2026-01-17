@@ -8,12 +8,6 @@ type PostCardProps = {
 };
 
 export default function PostCard({ post }: PostCardProps) {
-  const handleEdit = (e: React.MouseEvent) => {
-    e.preventDefault();
-    // TODO: 編集機能の実装
-    console.log("Edit post:", post.id);
-  };
-
   const handleDelete = (e: React.MouseEvent) => {
     e.preventDefault();
     // TODO: 削除機能の実装
@@ -36,8 +30,8 @@ export default function PostCard({ post }: PostCardProps) {
 
       {/* ボタンエリア */}
       <div className="mt-4 pt-4 border-t border-gray-200 flex gap-2">
-        <button
-          onClick={handleEdit}
+        <Link
+          href={`/posts/${post.id}/edit`}
           className="flex-1 px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-md hover:bg-blue-100 transition-colors flex items-center justify-center gap-2 cursor-pointer"
         >
           <svg
@@ -54,7 +48,7 @@ export default function PostCard({ post }: PostCardProps) {
             />
           </svg>
           編集
-        </button>
+        </Link>
         <button
           onClick={handleDelete}
           className="flex-1 px-4 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors flex items-center justify-center gap-2 cursor-pointer"
