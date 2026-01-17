@@ -8,7 +8,7 @@ export async function updatePost(
 ): Promise<Post> {
   const url = `${API_URL}/api/v1/posts/${id}`;
   console.log("[updatePost] PATCH", url, data);
-  
+
   const res = await fetch(url, {
     method: "PATCH",
     headers: {
@@ -24,10 +24,10 @@ export async function updatePost(
 
   const text = await res.text();
   console.log("[updatePost] status:", res.status, "body:", text);
-  
+
   if (!res.ok) {
     throw new Error(`投稿の更新に失敗しました: ${res.status} ${text}`);
   }
-  
+
   return JSON.parse(text);
 }
