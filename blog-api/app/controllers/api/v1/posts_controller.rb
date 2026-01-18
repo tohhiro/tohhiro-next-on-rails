@@ -1,6 +1,6 @@
 class Api::V1::PostsController < ApplicationController
   def index
-    @posts = Post.all
+    @posts = Post.order(created_at: :asc)
     render json: @posts
   end
 
