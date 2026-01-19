@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { Post } from "@/app/lib/types";
+import { deletePost } from "@/app/posts/lib/deletePost";
 
 type PostCardProps = {
   post: Post;
@@ -13,6 +14,16 @@ export default function PostCard({ post }: PostCardProps) {
     // TODO: 削除機能の実装
     if (window.confirm("この投稿を削除しますか？")) {
       console.log("Delete post:", post.id);
+      deletePost(post.id)
+        .then(() => {
+          alert("投稿を削除しました");
+          // 投稿一覧ページにリダイレクト
+          window.location.href = "/posts";
+        })
+        .catch((error) => {
+          console.error("Error deleting post:", error);
+          alert("投稿の削除に失敗しました");
+        });
     }
   };
 
