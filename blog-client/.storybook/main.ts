@@ -1,6 +1,6 @@
-import type { StorybookConfig } from "@storybook/nextjs-vite";
+import { defineMain } from "@storybook/nextjs-vite/node";
 
-const config: StorybookConfig = {
+export default defineMain({
   stories: ["../app/**/*.mdx", "../app/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
   addons: [
     "@chromatic-com/storybook",
@@ -11,5 +11,7 @@ const config: StorybookConfig = {
   ],
   framework: "@storybook/nextjs-vite",
   staticDirs: ["../public"],
-};
-export default config;
+  features: {
+    experimentalTestSyntax: true,
+  },
+});
