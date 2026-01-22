@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Post } from "@/app/lib/types";
-import { deletePost } from "@/app/posts/lib/deletePost";
+import { deletePost } from "../../lib/deletePost";
 
 type PostCardProps = {
   post: Post;
