@@ -1,4 +1,4 @@
-import { fetchPosts } from "@/app/lib/api/fetchPosts";
+import { fetchPosts } from "@/app/posts/lib/fetchPosts";
 import PostCard from "../PostCard";
 
 export default async function PostList() {
