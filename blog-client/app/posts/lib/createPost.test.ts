@@ -1,4 +1,3 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
 import { createPost } from "./createPost";
 import { Post } from "@/app/lib/types";
 
@@ -59,7 +58,7 @@ describe("createPost", () => {
             content: createData.content,
           },
         }),
-      }
+      },
     );
   });
 
@@ -87,7 +86,7 @@ describe("createPost", () => {
     });
 
     await expect(createPost(createData)).rejects.toThrow(
-      "投稿の作成に失敗しました: 500 Internal Server Error"
+      "投稿の作成に失敗しました: 500 Internal Server Error",
     );
   });
 
@@ -99,7 +98,7 @@ describe("createPost", () => {
     });
 
     await expect(createPost(createData)).rejects.toThrow(
-      "投稿の作成に失敗しました: 422 Title can't be blank"
+      "投稿の作成に失敗しました: 422 Title can't be blank",
     );
   });
 
