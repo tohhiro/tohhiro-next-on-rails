@@ -1,4 +1,3 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
 import { updatePost } from "./updatePost";
 import { Post } from "@/app/lib/types";
 
@@ -59,7 +58,7 @@ describe("updatePost", () => {
             content: updateData.content,
           },
         }),
-      }
+      },
     );
   });
 
@@ -75,7 +74,7 @@ describe("updatePost", () => {
     expect(result).toEqual(mockPost);
     expect(global.fetch).toHaveBeenCalledWith(
       "http://localhost:3000/api/v1/posts/1",
-      expect.any(Object)
+      expect.any(Object),
     );
   });
 
@@ -123,7 +122,7 @@ describe("updatePost", () => {
     });
 
     await expect(updatePost(999, updateData)).rejects.toThrow(
-      "投稿の更新に失敗しました: 404 Not Found"
+      "投稿の更新に失敗しました: 404 Not Found",
     );
   });
 
@@ -135,7 +134,7 @@ describe("updatePost", () => {
     });
 
     await expect(updatePost(1, updateData)).rejects.toThrow(
-      "投稿の更新に失敗しました: 500 Internal Server Error"
+      "投稿の更新に失敗しました: 500 Internal Server Error",
     );
   });
 
@@ -147,7 +146,7 @@ describe("updatePost", () => {
     });
 
     await expect(updatePost(1, updateData)).rejects.toThrow(
-      "投稿の更新に失敗しました: 422 Title can't be blank"
+      "投稿の更新に失敗しました: 422 Title can't be blank",
     );
   });
 

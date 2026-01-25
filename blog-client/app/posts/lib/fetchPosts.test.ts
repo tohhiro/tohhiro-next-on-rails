@@ -1,4 +1,3 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
 import { fetchPosts } from "./fetchPosts";
 import { Post } from "@/app/lib/types";
 
@@ -49,7 +48,7 @@ describe("fetchPosts", () => {
     expect(result).toEqual(mockPosts);
     expect(global.fetch).toHaveBeenCalledWith(
       "http://blog-api:3000/api/v1/posts",
-      { cache: "no-store" }
+      { cache: "no-store" },
     );
   });
 
@@ -73,7 +72,7 @@ describe("fetchPosts", () => {
     });
 
     await expect(fetchPosts()).rejects.toThrow(
-      "投稿の取得に失敗しました: 500 Internal Server Error"
+      "投稿の取得に失敗しました: 500 Internal Server Error",
     );
   });
 
@@ -85,7 +84,7 @@ describe("fetchPosts", () => {
     });
 
     await expect(fetchPosts()).rejects.toThrow(
-      "投稿の取得に失敗しました: 404 Not Found"
+      "投稿の取得に失敗しました: 404 Not Found",
     );
   });
 

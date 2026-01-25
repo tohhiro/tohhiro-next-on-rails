@@ -1,4 +1,3 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
 import { deletePost } from "./deletePost";
 
 describe("deletePost", () => {
@@ -37,7 +36,7 @@ describe("deletePost", () => {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   });
 
@@ -57,7 +56,7 @@ describe("deletePost", () => {
         headers: {
           "Content-Type": "application/json",
         },
-      }
+      },
     );
   });
 
@@ -81,7 +80,7 @@ describe("deletePost", () => {
     });
 
     await expect(deletePost(999)).rejects.toThrow(
-      "投稿の削除に失敗しました: 404 Not Found"
+      "投稿の削除に失敗しました: 404 Not Found",
     );
   });
 
@@ -93,7 +92,7 @@ describe("deletePost", () => {
     });
 
     await expect(deletePost(1)).rejects.toThrow(
-      "投稿の削除に失敗しました: 500 Internal Server Error"
+      "投稿の削除に失敗しました: 500 Internal Server Error",
     );
   });
 
@@ -111,7 +110,7 @@ describe("deletePost", () => {
     });
 
     await expect(deletePost(1)).rejects.toThrow(
-      "投稿の削除に失敗しました: 403 Forbidden"
+      "投稿の削除に失敗しました: 403 Forbidden",
     );
   });
 });

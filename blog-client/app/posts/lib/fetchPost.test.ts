@@ -1,4 +1,3 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
 import { fetchPost } from "./fetchPost";
 import { Post } from "@/app/lib/types";
 
@@ -42,7 +41,7 @@ describe("fetchPost", () => {
 
     expect(result).toEqual(mockPost);
     expect(global.fetch).toHaveBeenCalledWith(
-      "http://blog-api:3000/api/v1/posts/1"
+      "http://blog-api:3000/api/v1/posts/1",
     );
   });
 
@@ -57,7 +56,7 @@ describe("fetchPost", () => {
 
     expect(result).toEqual(mockPost);
     expect(global.fetch).toHaveBeenCalledWith(
-      "http://blog-api:3000/api/v1/posts/1"
+      "http://blog-api:3000/api/v1/posts/1",
     );
   });
 
@@ -85,7 +84,7 @@ describe("fetchPost", () => {
     });
 
     await expect(fetchPost(999)).rejects.toThrow(
-      "投稿の取得に失敗しました: 404 Not Found"
+      "投稿の取得に失敗しました: 404 Not Found",
     );
   });
 
@@ -97,7 +96,7 @@ describe("fetchPost", () => {
     });
 
     await expect(fetchPost(1)).rejects.toThrow(
-      "投稿の取得に失敗しました: 500 Internal Server Error"
+      "投稿の取得に失敗しました: 500 Internal Server Error",
     );
   });
 
@@ -130,7 +129,7 @@ describe("fetchPost", () => {
 
     expect(result.id).toBe(999999);
     expect(global.fetch).toHaveBeenCalledWith(
-      "http://blog-api:3000/api/v1/posts/999999"
+      "http://blog-api:3000/api/v1/posts/999999",
     );
   });
 });

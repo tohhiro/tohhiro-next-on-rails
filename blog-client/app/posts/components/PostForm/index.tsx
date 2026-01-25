@@ -4,8 +4,8 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Post } from "@/app/lib/types";
-import { createPost } from "@/app/posts/lib/createPost";
-import { updatePost } from "@/app/posts/lib/updatePost";
+import { createPost } from "../../lib/createPost";
+import { updatePost } from "../../lib/updatePost";
 
 type PostFormProps = {
   post?: Post; // 編集時のみ渡される
@@ -34,7 +34,10 @@ export default function PostForm({ post, mode }: PostFormProps) {
       }
       router.refresh();
     } catch (error) {
-      console.error(`Error ${mode === "create" ? "creating" : "updating"} post:`, error);
+      console.error(
+        `Error ${mode === "create" ? "creating" : "updating"} post:`,
+        error,
+      );
       alert(`投稿の${mode === "create" ? "作成" : "更新"}に失敗しました`);
     } finally {
       setSaving(false);
@@ -72,10 +75,16 @@ export default function PostForm({ post, mode }: PostFormProps) {
         </div>
 
         {/* フォーム */}
-        <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-lg p-8">
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white rounded-lg shadow-lg p-8"
+        >
           {/* タイトル */}
           <div className="mb-6">
-            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="title"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               タイトル
             </label>
             <input
@@ -91,7 +100,10 @@ export default function PostForm({ post, mode }: PostFormProps) {
 
           {/* コンテンツ */}
           <div className="mb-6">
-            <label htmlFor="content" className="block text-sm font-medium text-gray-700 mb-2">
+            <label
+              htmlFor="content"
+              className="block text-sm font-medium text-gray-700 mb-2"
+            >
               本文
             </label>
             <textarea
@@ -112,7 +124,13 @@ export default function PostForm({ post, mode }: PostFormProps) {
               disabled={saving}
               className="flex-1 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {saving ? (mode === "create" ? "作成中..." : "保存中...") : (mode === "create" ? "作成" : "保存")}
+              {saving
+                ? mode === "create"
+                  ? "作成中..."
+                  : "保存中..."
+                : mode === "create"
+                  ? "作成"
+                  : "保存"}
             </button>
             <Link
               href={backLink}
