@@ -1,9 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Post } from "@/app/lib/types";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Post } from "../../../lib/types";
+import { postFormSchema, PostFormData } from "../../../lib/schemas";
 import { createPost } from "../../lib/createPost";
 import { updatePost } from "../../lib/updatePost";
 
@@ -14,21 +16,26 @@ type PostFormProps = {
 
 export default function PostForm({ post, mode }: PostFormProps) {
   const router = useRouter();
-  const [title, setTitle] = useState(post?.title || "");
-  const [content, setContent] = useState(post?.content || "");
-  const [saving, setSaving] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<PostFormData>({
+    resolver: zodResolver(postFormSchema),
+    defaultValues: {
+      title: post?.title || "",
+      content: post?.content || "",
+    },
+  });
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setSaving(true);
-
+  const onSubmit = async (data: PostFormData) => {
     try {
       if (mode === "create") {
-        const newPost = await createPost({ title, content });
+        const newPost = await createPost(data);
         alert("投稿を作成しました");
         router.push(`/posts/${newPost.id}`);
       } else {
-        await updatePost(post!.id, { title, content });
+        await updatePost(post!.id, data);
         alert("投稿を更新しました");
         router.push(`/posts/${post!.id}`);
       }
@@ -39,8 +46,6 @@ export default function PostForm({ post, mode }: PostFormProps) {
         error,
       );
       alert(`投稿の${mode === "create" ? "作成" : "更新"}に失敗しました`);
-    } finally {
-      setSaving(false);
     }
   };
 
@@ -76,7 +81,7 @@ export default function PostForm({ post, mode }: PostFormProps) {
 
         {/* フォーム */}
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className="bg-white rounded-lg shadow-lg p-8"
         >
           {/* タイトル */}
@@ -90,12 +95,13 @@ export default function PostForm({ post, mode }: PostFormProps) {
             <input
               type="text"
               id="title"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              required
+              {...register("title")}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
               placeholder="投稿のタイトルを入力"
             />
+            {errors.title && (
+              <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
+            )}
           </div>
 
           {/* コンテンツ */}
@@ -108,23 +114,26 @@ export default function PostForm({ post, mode }: PostFormProps) {
             </label>
             <textarea
               id="content"
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              required
+              {...register("content")}
               rows={12}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-vertical"
               placeholder="投稿の本文を入力"
             />
+            {errors.content && (
+              <p className="mt-1 text-sm text-red-600">
+                {errors.content.message}
+              </p>
+            )}
           </div>
 
           {/* ボタン */}
           <div className="flex gap-4">
             <button
               type="submit"
-              disabled={saving}
+              disabled={isSubmitting}
               className="flex-1 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
-              {saving
+              {isSubmitting
                 ? mode === "create"
                   ? "作成中..."
                   : "保存中..."
