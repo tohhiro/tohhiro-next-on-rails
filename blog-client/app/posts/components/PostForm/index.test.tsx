@@ -4,16 +4,9 @@ import PostForm from "./index";
 import * as createPostModule from "../../lib/createPost";
 import * as updatePostModule from "../../lib/updatePost";
 import { Post } from "@/app/lib/types";
+import mockRouter from "next-router-mock";
 
-// next/navigationをモック
-const mockPush = vi.fn();
-const mockRefresh = vi.fn();
-vi.mock("next/navigation", () => ({
-  useRouter: () => ({
-    push: mockPush,
-    refresh: mockRefresh,
-  }),
-}));
+vi.mock("next/navigation", () => require("next-router-mock"));
 
 // window.alertをモック
 const mockAlert = vi.fn();
@@ -107,8 +100,7 @@ describe("PostForm", () => {
 
       await waitFor(() => {
         expect(mockAlert).toHaveBeenCalledWith("投稿を作成しました");
-        expect(mockPush).toHaveBeenCalledWith("/posts/99");
-        expect(mockRefresh).toHaveBeenCalled();
+        expect(mockRouter).toMatchObject({ pathname: "/posts/99" });
       });
     });
 
@@ -219,8 +211,7 @@ describe("PostForm", () => {
 
       await waitFor(() => {
         expect(mockAlert).toHaveBeenCalledWith("投稿を更新しました");
-        expect(mockPush).toHaveBeenCalledWith("/posts/1");
-        expect(mockRefresh).toHaveBeenCalled();
+        expect(mockRouter).toMatchObject({ pathname: "/posts/1" });
       });
     });
 

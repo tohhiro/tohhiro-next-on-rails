@@ -1,6 +1,9 @@
 import { render, screen } from "@testing-library/react";
 import PostCard from "./index";
 import * as deletePostModule from "../../lib/deletePost";
+import mockRouter from "next-router-mock";
+
+vi.mock("next/navigation", () => require("next-router-mock"));
 
 describe("PostCard", () => {
   const mockPost = {

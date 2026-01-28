@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Post } from "@/app/lib/types";
 import { deletePost } from "../../lib/deletePost";
 
@@ -9,16 +10,16 @@ type PostCardProps = {
 };
 
 export default function PostCard({ post }: PostCardProps) {
+  const router = useRouter();
+
   const handleDelete = (e: React.MouseEvent) => {
     e.preventDefault();
-    // TODO: 削除機能の実装
     if (window.confirm("この投稿を削除しますか？")) {
-      console.log("Delete post:", post.id);
       deletePost(post.id)
         .then(() => {
           alert("投稿を削除しました");
-          // 投稿一覧ページにリダイレクト
-          window.location.href = "/posts";
+          router.push("/posts");
+          router.refresh();
         })
         .catch((error) => {
           console.error("Error deleting post:", error);
