@@ -45,6 +45,7 @@
     "@vitest/coverage-v8": "^4.0.16",
     "babel-plugin-react-compiler": "1.0.0",
     "jsdom": "^27.4.0",
+    "next-router-mock": "^1.0.5",
     "playwright": "^1.57.0",
     "storybook": "10.1.11",
     "tailwindcss": "^4",
