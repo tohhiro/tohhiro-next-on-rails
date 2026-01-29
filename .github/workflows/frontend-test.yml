@@ -15,7 +15,7 @@ on:
             - ".github/workflows/frontend-test.yml"
 
 jobs:
-    test:
+    frontend-unit-test:
         runs-on: ubuntu-latest
 
         defaults:
