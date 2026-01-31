@@ -1,5 +1,5 @@
-import { definePreview } from "@storybook/nextjs-vite";
 import addonA11y from "@storybook/addon-a11y";
+import { definePreview } from "@storybook/nextjs-vite";
 import "../app/globals.css";
 
 export default definePreview({

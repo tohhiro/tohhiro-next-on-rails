@@ -1,11 +1,11 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Post } from "../../../lib/types";
-import { postFormSchema, PostFormData } from "../../../lib/schemas";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { type PostFormData, postFormSchema } from "../../../lib/schemas";
+import type { Post } from "../../../lib/types";
 import { createPost } from "../../lib/createPost";
 import { updatePost } from "../../lib/updatePost";
 
@@ -35,9 +35,9 @@ export default function PostForm({ post, mode }: PostFormProps) {
         alert("投稿を作成しました");
         router.push(`/posts/${newPost.id}`);
       } else {
-        await updatePost(post!.id, data);
+        await updatePost(post?.id, data);
         alert("投稿を更新しました");
-        router.push(`/posts/${post!.id}`);
+        router.push(`/posts/${post?.id}`);
       }
       router.refresh();
     } catch (error) {
@@ -49,7 +49,7 @@ export default function PostForm({ post, mode }: PostFormProps) {
     }
   };
 
-  const backLink = mode === "create" ? "/posts" : `/posts/${post!.id}`;
+  const backLink = mode === "create" ? "/posts" : `/posts/${post?.id}`;
   const pageTitle = mode === "create" ? "新規投稿" : "投稿を編集";
 
   return (
@@ -100,7 +100,9 @@ export default function PostForm({ post, mode }: PostFormProps) {
               placeholder="投稿のタイトルを入力"
             />
             {errors.title && (
-              <p className="mt-1 text-sm text-red-600">{errors.title.message}</p>
+              <p className="mt-1 text-sm text-red-600">
+                {errors.title.message}
+              </p>
             )}
           </div>
 

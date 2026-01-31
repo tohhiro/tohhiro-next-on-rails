@@ -1,7 +1,7 @@
-import { fetchPost } from "@/app/posts/lib/fetchPost";
-import { Post } from "@/app/lib/types";
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Post } from "@/app/lib/types";
+import { fetchPost } from "@/app/posts/lib/fetchPost";
 
 export default async function PostDetailPage({
   params,
@@ -13,7 +13,7 @@ export default async function PostDetailPage({
   let post: Post | null = null;
   try {
     post = await fetchPost(id);
-  } catch (e) {
+  } catch (_e) {
     return notFound();
   }
 

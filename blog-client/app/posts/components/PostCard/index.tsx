@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { Post } from "@/app/lib/types";
+import type { Post } from "@/app/lib/types";
 import { deletePost } from "../../lib/deletePost";
 
 type PostCardProps = {
@@ -62,6 +62,7 @@ export default function PostCard({ post }: PostCardProps) {
           編集
         </Link>
         <button
+          type="button"
           onClick={handleDelete}
           className="flex-1 px-4 py-2 text-sm font-medium text-red-600 bg-red-50 rounded-md hover:bg-red-100 transition-colors flex items-center justify-center gap-2 cursor-pointer"
         >

@@ -1,6 +1,6 @@
 import preview from "@/.storybook/preview";
+import type { Post } from "@/app/lib/types";
 import PostForm from "./index";
-import { Post } from "@/app/lib/types";
 
 const meta = preview.meta({
   component: PostForm,
@@ -68,7 +68,7 @@ export const CreateModeWithPartialInput = meta.story({
   args: {
     mode: "create",
   },
-  play: async ({ canvasElement }) => {
+  play: async ({ canvasElement: _canvasElement }) => {
     // ストーリーでインタラクションをシミュレートする場合はここに記述
     // 例: ユーザーが入力を始めた状態をシミュレート
   },

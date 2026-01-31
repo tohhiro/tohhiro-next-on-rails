@@ -1,5 +1,5 @@
-import { Suspense } from "react";
 import Link from "next/link";
+import { Suspense } from "react";
 import PostList from "./components/PostList";
 import PostListSkeleton from "./components/PostListSkeleton";
 

@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
-import { fetchPost } from "@/app/posts/lib/fetchPost";
+import type { Post } from "@/app/lib/types";
 import PostForm from "@/app/posts/components/PostForm";
+import { fetchPost } from "@/app/posts/lib/fetchPost";
 
 export default async function EditPostPage({
   params,
@@ -9,7 +10,7 @@ export default async function EditPostPage({
 }) {
   const { id } = await params;
 
-  let post;
+  let post: Post;
   try {
     post = await fetchPost(id);
   } catch (error) {

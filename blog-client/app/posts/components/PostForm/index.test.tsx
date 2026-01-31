@@ -1,10 +1,10 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import PostForm from "./index";
+import mockRouter from "next-router-mock";
+import type { Post } from "@/app/lib/types";
 import * as createPostModule from "../../lib/createPost";
 import * as updatePostModule from "../../lib/updatePost";
-import { Post } from "@/app/lib/types";
-import mockRouter from "next-router-mock";
+import PostForm from "./index";
 
 vi.mock("next/navigation", () => require("next-router-mock"));
 

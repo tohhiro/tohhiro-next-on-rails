@@ -1,0 +1,31 @@
+# Dependencies
+node_modules
+
+# Build outputs
+.next
+out
+dist
+build
+.storybook-static
+
+# Test coverage
+coverage
+.nyc_output
+
+# Vitest
+.vitest
+
+# Playwright
+test-results
+playwright-report
+playwright/.cache
+
+# Misc
+.DS_Store
+*.log
+.env*.local
+
+# Cache
+.cache
+.turbo
+*.tsbuildinfo
