@@ -1,0 +1,37 @@
+name: Backend RuboCop
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "blog-api/**"
+            - ".github/workflows/backend-rubocop.yml"
+    pull_request:
+        branches:
+            - main
+        paths:
+            - "blog-api/**"
+            - ".github/workflows/backend-rubocop.yml"
+
+jobs:
+    backend-rubocop:
+        runs-on: ubuntu-latest
+
+        defaults:
+            run:
+                working-directory: blog-api
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+
+            - name: Setup Ruby
+              uses: ruby/setup-ruby@a2bbe5b1b236842c1cb7dd11e8e3b51e0a616acc # v1.202.0
+              with:
+                  ruby-version: "3.3.6"
+                  bundler-cache: true
+                  working-directory: blog-api
+
+            - name: Run RuboCop
+              run: bin/rubocop
