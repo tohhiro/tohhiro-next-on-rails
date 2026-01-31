@@ -1,5 +1,5 @@
 import preview from "@/.storybook/preview";
-import { Post } from "@/app/lib/types";
+import type { Post } from "@/app/lib/types";
 
 // PostDetailPageはServer Componentなので、Storybook用にMock Componentを作成
 function MockedPostDetailPage({ post }: { post: Post }) {

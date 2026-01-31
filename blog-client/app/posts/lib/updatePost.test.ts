@@ -1,5 +1,5 @@
+import type { Post } from "@/app/lib/types";
 import { updatePost } from "./updatePost";
-import { Post } from "@/app/lib/types";
 
 describe("updatePost", () => {
   const mockPost: Post = {

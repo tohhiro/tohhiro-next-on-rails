@@ -1,6 +1,6 @@
 import preview from "@/.storybook/preview";
+import type { Post } from "@/app/lib/types";
 import PostCard from "../PostCard";
-import { Post } from "@/app/lib/types";
 
 // PostListはServer Componentなので、Storybook用に同等のClient Componentを作成
 function MockedPostList({ posts }: { posts: Post[] }) {

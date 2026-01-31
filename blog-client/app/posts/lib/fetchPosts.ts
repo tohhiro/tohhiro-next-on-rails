@@ -1,4 +1,4 @@
-import { Post } from "@/app/lib/types";
+import type { Post } from "@/app/lib/types";
 
 const API_URL = process.env.API_URL || "http://blog-api:3000";
 

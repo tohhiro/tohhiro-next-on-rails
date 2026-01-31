@@ -1,11 +1,11 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test("ホームページが表示される", async ({ page }) => {
   await page.goto("/");
 
   // ページタイトルを確認
   await expect(
-    page.getByRole("heading", { name: "Blog Monorepo" })
+    page.getByRole("heading", { name: "Blog Monorepo" }),
   ).toBeVisible();
 });
 
@@ -14,6 +14,6 @@ test("投稿一覧ページに遷移できる", async ({ page }) => {
 
   // 投稿一覧のタイトルを確認
   await expect(
-    page.getByRole("heading", { name: "ブログ投稿一覧" })
+    page.getByRole("heading", { name: "ブログ投稿一覧" }),
   ).toBeVisible();
 });

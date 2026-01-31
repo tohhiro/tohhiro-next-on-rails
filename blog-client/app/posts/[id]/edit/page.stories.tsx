@@ -1,5 +1,5 @@
 import preview from "@/.storybook/preview";
-import { Post } from "@/app/lib/types";
+import type { Post } from "@/app/lib/types";
 import PostForm from "@/app/posts/components/PostForm";
 
 // EditPostPageはServer Componentなので、Storybook用にMock Componentを作成

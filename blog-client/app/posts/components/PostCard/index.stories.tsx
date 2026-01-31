@@ -1,6 +1,6 @@
 import preview from "@/.storybook/preview";
+import type { Post } from "@/app/lib/types";
 import PostCard from "./index";
-import { Post } from "@/app/lib/types";
 
 const meta = preview.meta({
   component: PostCard,

@@ -50,7 +50,9 @@ describe("postFormSchema", () => {
 
       expect(result.success).toBe(false);
       if (!result.success) {
-        const titleError = result.error.issues.find((issue) => issue.path[0] === "title");
+        const titleError = result.error.issues.find(
+          (issue) => issue.path[0] === "title",
+        );
         expect(titleError).toBeDefined();
         expect(titleError?.message).toBe("タイトルを入力してください");
       }
@@ -66,7 +68,9 @@ describe("postFormSchema", () => {
 
       expect(result.success).toBe(false);
       if (!result.success) {
-        const titleError = result.error.issues.find((issue) => issue.path[0] === "title");
+        const titleError = result.error.issues.find(
+          (issue) => issue.path[0] === "title",
+        );
         expect(titleError).toBeDefined();
         expect(titleError?.message).toBe("タイトルを入力してください");
       }
@@ -92,7 +96,9 @@ describe("postFormSchema", () => {
 
       expect(result.success).toBe(false);
       if (!result.success) {
-        const titleError = result.error.issues.find((issue) => issue.path[0] === "title");
+        const titleError = result.error.issues.find(
+          (issue) => issue.path[0] === "title",
+        );
         expect(titleError).toBeDefined();
       }
     });
@@ -191,7 +197,9 @@ describe("postFormSchema", () => {
 
       expect(result.success).toBe(false);
       if (!result.success) {
-        const contentError = result.error.issues.find((issue) => issue.path[0] === "content");
+        const contentError = result.error.issues.find(
+          (issue) => issue.path[0] === "content",
+        );
         expect(contentError).toBeDefined();
         expect(contentError?.message).toBe("本文を入力してください");
       }
@@ -207,7 +215,9 @@ describe("postFormSchema", () => {
 
       expect(result.success).toBe(false);
       if (!result.success) {
-        const contentError = result.error.issues.find((issue) => issue.path[0] === "content");
+        const contentError = result.error.issues.find(
+          (issue) => issue.path[0] === "content",
+        );
         expect(contentError).toBeDefined();
         expect(contentError?.message).toBe("本文を入力してください");
       }
@@ -233,7 +243,9 @@ describe("postFormSchema", () => {
 
       expect(result.success).toBe(false);
       if (!result.success) {
-        const contentError = result.error.issues.find((issue) => issue.path[0] === "content");
+        const contentError = result.error.issues.find(
+          (issue) => issue.path[0] === "content",
+        );
         expect(contentError).toBeDefined();
       }
     });

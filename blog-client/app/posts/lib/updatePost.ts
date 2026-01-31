@@ -1,10 +1,10 @@
-import { Post } from "@/app/lib/types";
+import type { Post } from "@/app/lib/types";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export async function updatePost(
   id: number | string,
-  data: { title: string; content: string }
+  data: { title: string; content: string },
 ): Promise<Post> {
   const url = `${API_URL}/api/v1/posts/${id}`;
   console.log("[updatePost] PATCH", url, data);
