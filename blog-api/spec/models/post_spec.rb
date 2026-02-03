@@ -16,14 +16,19 @@ RSpec.describe Post, type: :model do
       expect(post).to be_valid
     end
 
-    it "titleがなければ無効であること" do
-      post = build(:post, title: nil)
-      expect(post).not_to be_valid
-    end
-
-    it "contentがなければ無効であること" do
-      post = build(:post, content: nil)
-      expect(post).not_to be_valid
+    # パラメータライズドテスト: 無効な値のパターンをテスト
+    context "無効な値の場合" do
+      [
+        { attribute: :title, value: nil, description: "nilの場合" },
+        { attribute: :title, value: "   ", description: "空白文字のみの場合" },
+        { attribute: :content, value: nil, description: "nilの場合" },
+        { attribute: :content, value: "   ", description: "空白文字のみの場合" }
+      ].each do |test_case|
+        it "#{test_case[:attribute]}が#{test_case[:description]} 無効であること" do
+          post = build(:post, test_case[:attribute] => test_case[:value])
+          expect(post).not_to be_valid
+        end
+      end
     end
   end
 end
