@@ -9,10 +9,9 @@ import type { Post } from "../../../lib/types";
 import { createPost } from "../../lib/createPost";
 import { updatePost } from "../../lib/updatePost";
 
-type PostFormProps = {
-  post?: Post; // 編集時のみ渡される
-  mode: "create" | "edit";
-};
+type PostFormProps =
+  | { mode: "create"; post?: never }
+  | { mode: "edit"; post: Post };
 
 export default function PostForm({ post, mode }: PostFormProps) {
   const router = useRouter();
@@ -35,9 +34,9 @@ export default function PostForm({ post, mode }: PostFormProps) {
         alert("投稿を作成しました");
         router.push(`/posts/${newPost.id}`);
       } else {
-        await updatePost(post?.id, data);
+        await updatePost(post.id, data);
         alert("投稿を更新しました");
-        router.push(`/posts/${post?.id}`);
+        router.push(`/posts/${post.id}`);
       }
       router.refresh();
     } catch (error) {
