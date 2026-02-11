@@ -36,6 +36,11 @@ RSpec.configure do |config|
   # FactoryBotのメソッドを直接使えるようにする
   config.include FactoryBot::Syntax::Methods
 
+  # Request Specsでホストを設定（Host Authorizationの問題を回避）
+  config.before(:each, type: :request) do
+    host! "localhost"
+  end
+
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
     Rails.root.join('spec/fixtures')
