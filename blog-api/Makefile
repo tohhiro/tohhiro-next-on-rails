@@ -10,10 +10,10 @@ rubocop-fix: ## RuboCopで自動修正
 	docker compose run --rm blog-api bin/rubocop -a
 
 test: ## RSpecでテスト実行
-	docker compose run --rm blog-api bundle exec rspec
+	docker compose run --rm -e RAILS_ENV=test blog-api bundle exec rspec
 
 test-doc: ## RSpecでテスト実行（詳細表示）
-	docker compose run --rm blog-api bundle exec rspec --format documentation
+	docker compose run --rm -e RAILS_ENV=test blog-api bundle exec rspec --format documentation
 
 shell: ## Railsコンソールを起動
 	docker compose run --rm blog-api bin/rails console
