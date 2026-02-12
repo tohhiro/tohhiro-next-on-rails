@@ -79,6 +79,6 @@ jobs:
 
             - name: Run Octocov
               if: steps.filter.outputs.backend == 'true'
-              uses: k1LoW/octocov-action@1c48898bcf7da26e8e40e1d249e4f27ffaa66631 # v1.4.0
+              uses: k1LoW/octocov-action@v1
               with:
                   config: .octocov.yml
