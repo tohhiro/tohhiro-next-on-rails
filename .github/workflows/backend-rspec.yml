@@ -11,6 +11,9 @@ on:
 jobs:
     backend-rspec:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
+            pull-requests: write
 
         services:
             postgres:
@@ -65,3 +68,17 @@ jobs:
               if: steps.filter.outputs.backend == 'true'
               working-directory: blog-api
               run: bundle exec rspec
+
+            - name: Upload coverage report
+              if: steps.filter.outputs.backend == 'true'
+              uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4.4.3
+              with:
+                  name: coverage-report
+                  path: blog-api/coverage/
+                  retention-days: 7
+
+            - name: Run Octocov
+              if: steps.filter.outputs.backend == 'true'
+              uses: k1LoW/octocov-action@v1
+              with:
+                  config: .octocov.yml

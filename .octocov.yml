@@ -1,0 +1,24 @@
+# Octocov configuration
+# https://github.com/k1LoW/octocov
+
+coverage:
+  # SimpleCovの結果ファイルを指定
+  paths:
+    - blog-api/coverage/.resultset.json
+
+comment:
+  # PRにカバレッジコメントを投稿
+  enable: true
+  # カバレッジ変化がない場合はコメントを非表示
+  hideFooterLink: false
+
+# カバレッジの閾値（これを下回ると警告）
+codeToTestRatio:
+  enable: false
+
+testExecutionTime:
+  enable: false
+
+diff:
+  # 差分のあるファイルのみカバレッジを表示
+  enable: true
